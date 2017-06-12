@@ -1,0 +1,95 @@
+Unilasalle-RJ - AV2
+Aluno: Charles Jean Ferreira Leal (0050012850)
+Prova Av2 de Laboratorio de Sistemas Operacionais
+Professor: Alex Salgado
+1o. Semestre de 2017   Turno: manhã
+--------------------------------------------------
+1-Faça um script shell que:
+- Pergunte por um nome e crie uma pasta e um arquivo.txt com o mesmo nome inserido.
+
+#!/bin/bash
+
+echo "Entre com o nome desejado:"
+read NOME
+mkdir $NOME
+touch "$NOME"/$NOME.txt
+
+2-Quantos erros tem no script abaixo? Qual(is) são eles?
+
+case "$file" in
+    *.txt}
+        echo "É um arquivo de texto."
+        cat "$file"
+        
+    *.gif|*.jpg|*.png}
+        echo "É uma figura."
+        xloadimage "$file"
+        
+    *}
+        echo "Não sei que arquivo é esse."
+        
+esac
+
+4 erros
+
+1- Faltou ler o nome do arquivo.
+2- No lugar de fechar chaves é fechar parenteses.
+3- Faltou o ;; para fechar os comandos de cada case.
+4- O $file no case não tem aspas.
+
+3-Usando estrutura de repetição, faça um script para exibir todos os arquivos
+da pasta atual com tamanho maior que 500kb.
+
+
+
+4-Usando estrutura de repetição, faça um script para calcular e exibir quantas
+pastas e quantos arquivos tem na pasta atual.
+
+#!/bin/bash
+
+t_dir=0
+t_arq=0
+for item in *
+do
+  if [ -d $item ]
+  then
+    t_dir=$(($t_dir+1))
+  else
+    t_arq=$(($t_arq+1))
+  fi
+done
+echo "Arquivos: $t_arq Diretorios: $t_dir"
+
+
+
+5-Faça um script que leia um numero IP e retorna se endereço responde ou não ao 
+comando ping.
+Além disso, se for digitado um ip vazio, o script deve informar ao usuario.
+
+#!/bin/bash
+
+echo -n "ip? "
+read ip
+if [ -s $ip ]
+then
+  echo "IP vazio"
+  exit 1
+else
+  ping -c1 -q $ip
+  if [ $? -eq 0 ]
+  then
+    echo "$ip respondendo"
+    exit 0
+  else
+    echo "$ip nao respondendo"
+    exit 1
+  fi
+fi
+
+
+Respostas aqui:
+1-
+2-
+3-
+4-
+5-
